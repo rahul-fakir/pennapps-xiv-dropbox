@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Dr0pbox, for unlimited storage. We handle everything for you, you just drag, drop, and play.">
+    <meta name="keywords" content="dr0pbox, unlimited, storage">
+    <title>Login Page | DR0PBOX
+    </title>
+    <!-- Favicons-->
+    <link rel="icon" href="img/favicon-32x32.png" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-152x152.png">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png">
+    <!-- For Windows Phone -->
+    <!-- CORE CSS-->
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/login.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <link href="css/prism.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/perfect-scrollbar.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <!-- ICONS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body class="red">
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+      <div id="loader">
+      </div>        
+      <div class="loader-section section-left">
+      </div>
+      <div class="loader-section section-right">
+      </div>
+    </div>
+    <!-- End Page Loading -->
+    <script>
+      // This is called with the results from from FB.getLoginStatus().
+      function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+          // Logged into your app and Facebook.
+          testAPI();
+        }
+        else if (response.status === 'not_authorized') {
+          // The person is logged into Facebook, but not your app.
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into this app.';
+        }
+        else {
+          // The person is not logged into Facebook, so we're not sure if
+          // they are logged into this app or not.
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into Facebook.';
+        }
+      }
+      // This function is called when someone finishes with the Login
+      // Button.  See the onlogin handler attached to it in the sample
+      // code below.
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        }
+                         );
+      }
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '662718693894492',
+          cookie     : true,  // enable cookies to allow the server to access 
+          // the session
+          xfbml      : true,  // parse social plugins on this page
+          version    : 'v2.5' // use graph api version 2.5
+        }
+               );
+        // Now that we've initialized the JavaScript SDK, we call 
+        // FB.getLoginStatus().  This function gets the state of the
+        // person visiting this page and can return one of three states to
+        // the callback you provide.  They can be:
+        //
+        // 1. Logged into your app ('connected')
+        // 2. Logged into Facebook, but not your app ('not_authorized')
+        // 3. Not logged into Facebook and can't tell if they are logged into
+        //    your app or not.
+        //
+        // These three cases are handled in the callback function.
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        }
+                         );
+      };
+      // Load the SDK asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+       (document, 'script', 'facebook-jssdk'));
+      // Here we run a very simple test of the Graph API after login is
+      // successful.  See statusChangeCallback() for when this call is made.
+      function testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          console.log('Successful login for: ' + response.name);
+          document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+        }
+              );
+      }
+    </script>
+    <div id="login-page" class="row">
+      <div class="col s12 z-depth-4 card-panel">
+        <form class="login-form">
+          <div class="row">
+            <div class="input-field col s12 center">
+              <img src="img/logo.png" alt="" class="circle responsive-img valign profile-image-login">
+              <!--<p class="center login-form-text">Dr0pbox</p>-->
+            </div>
+          </div>
+          <div class="row margin">
+            <div class="facebooklogin center-align">
+              <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+              </fb:login-button>
+            </div>
+            <div class="center-align">
+              <b>_________________________________________
+              </b>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">person_outline
+              </i>
+              <input id="username" type="text">
+              <label for="username">Email
+              </label>
+            </div>
+          </div>
+          <div class="row margin">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock_outline
+              </i>
+              <input id="password" type="password">
+              <label for="password">Password
+              </label>
+            </div>
+          </div>
+          <div class="row">          
+            <div class="input-field col s12 m12 l12  login-text">
+              <input type="checkbox" id="remember-me"/>
+              <label for="remember-me">Remember me
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <a href="index.html" class="btn waves-effect waves-light col s12 red">Login
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.min.js">
+    </script>
+
+    <!-- Materialize js-->
+    <script type="text/javascript" src="js/materialize.min.js">
+    </script>
+    <!--Prism-->
+    <script type="text/javascript" src="js/prism.js">
+    </script>
+    <!--Scrollbar-->
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js">
+    </script>
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="js/plugins.min.js">
+    </script>
+  </body>
+</html>

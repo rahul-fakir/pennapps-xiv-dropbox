@@ -1,0 +1,66 @@
+/* Grey Main BG color */
+html {
+	background-color: #F5F5F5;
+}
+
+/* Overriding the level switch, need a lighter shade for checkbox for red to pop out. */
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #F44336;
+}
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #EF5350;
+    left: 24px
+}
+
+.fp__btn {
+	background: #673AB7;
+}
+
+.fp__btn:hover {
+    background-color: #673AB7;
+    background:#673AB7;
+}
+
+nav {
+	background-color: #F44336;
+}
+
+.brand-logo {
+
+}
+
+.divider {
+	background-color: #E57373;
+}
+
+.upload {
+}
+
+a {
+	color: #E53935;
+}
+
+/* overrride higlight color to palette */
+table.highlight>tbody>tr:hover{
+	background-color: #FFCDD2;
+}
+
+/* on hover switch text to white for better readability
+table.highlight>tbody>tr:hover{
+	color: white;
+}
+
+table.highlight>tbody>tr>td>a:hover{
+	color: white;
+}
+*/
+
+.fp__btn {
+	background-color: #673AB7 !important;
+}
+
+/* http://google.github.io/material-design-icons/#icon-font-for-the-web */
+.material-icons.md-18 { font-size: 20px; }
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Dr0pbox, for unlimited storage. We handle everything for you, you just drag, drop, and play.">
+    <meta name="keywords" content="dr0pbox, unlimited, storage, college students, hackathon, pennapps">
+    <title>DR0PBOX
+    </title>
+    <!-- Favicons-->
+    <link rel="icon" href="img/favicon-32x32.png" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-152x152.png">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#F44336">
+    <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png">
+    <!-- For Windows Phone -->
+    <!-- CORE CSS-->
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/loader.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ICONS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- CUSTOM CSS -->
+    <link href="css/main.css" type="text/css" rel="stylesheet" media="screen,projection">
+  </head>
+  <body>
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+      <div id="loader">
+      </div>        
+      <div class="loader-section section-left">
+      </div>
+      <div class="loader-section section-right">
+      </div>
+    </div>
+    <!-- End Page Loading -->
+    <!-- Navigation Bar-->
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo left">
+          <img src="img/logo-white.png" alt="Dr0pbox Logo" />
+        </a>
+        <ul id="nav-mobile" class="right">
+          <li>
+            <a href="login.html">
+              <i class="material-icons">exit_to_app
+              </i>
+            </a>
+          </li>
+      </div>
+    </nav>
+      <!-- End Navigation Bar-->
+      <br /> 
+      <!-- Switch -->
+
+
+      <br />
+
+      <div class="grid-view">
+        <!-- START ROW -->
+        <div class="row" id="file_container">
+          <!-- START CARD ONE -->
+          <div class="col s12 m6 l3">        
+            <div class="card small hoverable">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="img/drone.jpg" alt="drone">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator text-darken-4">DJI_Phantom_004.mov
+                  <i class="material-icons right">more_vert
+                  </i>
+                </span>
+                <!-- CODE FOR D/L and VIEW -->  
+                <div class="row">
+                  <div class="col s6 m6 l6">
+                    <a class="waves-effect waves-light btn red" href="#">
+                      <i class="tiny material-icons">search
+                      </i>
+                    </a>
+                  </div>
+                  <div class="col s6 m6 l6">
+                    <a class="waves-effect waves-light btn red" href="#">
+                      <i class="tiny material-icons">cloud_download
+                      </i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title">DJI_Phantom_004.mov
+                  <i class="material-icons right red-text">close
+                  </i>
+                </span>
+                <table class="centered striped">
+                  <thead>
+                    <tr>
+                      <th data-field="size white">Size
+                      </th>
+                      <th data-field="date white-text">Date Modified
+                      </th>
+                      <th data-field="time white-text">Time
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>4.5GB
+                      </td>
+                      <td>8th December 2015
+                      </td>
+                      <td>19:29
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- END CARD ONE -->
+
+
+
+        </div>
+      <!-- END ROW -->
+    </div>
+
+    <!-- FAB with Filestack API Call-->
+    <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+      <input type="filepicker" data-fp-apikey="AdFbXEbL7RCOBhv7qOJOZz" onchange="uploadComplete()" >
+      <!-- alert(event.fpfile.url) -->
+    </div>  
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.min.js">
+    </script>
+    <!-- Materialize js-->
+    <script type="text/javascript" src="js/materialize.min.js">
+    </script>
+    <!-- -->
+    <script type="text/javascript" src="js/plugins.min.js">
+    </script>
+    <!-- Client side check to see if file is in the limits of uploading-->
+    <script>
+function uploadComplete(){
+  audio.play();
+  Materialize.toast('Your file has been uploaded, and will be available shortly.', 6000)
+console.log(event.fpfile);
+      $.ajax({
+        url: "http://localhost:8080/api/save",
+        type: 'POST',
+        dataType: 'json',
+        data: {"size": event.fpfile.size, "url": event.fpfile.url, "file_name": event.fpfile.filename}, // added data type
+        success: function(res) {
+            alert(res);
+     
+            
+        }, 
+               error:function(exception){
+          
+           console.log(exception);
+       } 
+    });
+}
+    </script>
+    <!-- toggle list view -->
+
+
+        <script type = "text/javascript" 
+         src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+
+      $.ajax({
+        url: "http://localhost:8080/api/getFileList",
+        type: 'POST',
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            var files = res["files"];
+            var links = res["links"];
+            var innerHTML = "";
+            for (i=0; i < files.length; i++) {
+              var background = Math.floor((Math.random() * 10) + 1);
+              innerHTML = innerHTML +     
+             ' <div class=\"col s12 m6 l3\"><div class=\"card small hoverable\"><div class=\"card-image waves-effect waves-block waves-light\"><img class=\"activator\" src=\"img/' + background +'.jpg\" alt=\"drone\"></div><div class=\"card-content\"><span class=\"card-title activator text-darken-4\">'+ files[i]['name'] +'<i class=\"material-icons right\">more_vert</i></span><!-- CODE FOR D/L and VIEW -->  <div class=\"row\">  <div class=\"col s12 m12 l12\">     <a style=\"width: 100%; margin-top:0em\"class=\"waves-effect waves-light btn red\" href=\"'+ links[i] +'\"> <i class=\"tiny material-icons\">cloud_download </i> </a></div></div> </div> <div class=\"card-reveal\">  <span class=\"card-title\">'+ files[i]['name'] +'<i class=\"material-icons right red-text\">close  </i>  </span> <table class=\"centered striped\"> <thead> <tr> <th data-field=\"size white\">Size </th> <th data-field=\"date white-text\">Date Modified</th> <th data-field=\"time white-text\">Time</th></tr></thead><tbody><tr><td>4.5GB</td><td>8th December 2015</td>  <td>19:29 </td> </tr></tbody> </table></div> </div></div>'
+            }
+            document.getElementById('file_container').innerHTML = innerHTML;
+        }, 
+               error:function(exception){
+          
+           console.log(exception);
+       } 
+    });
+});
+    </script>
+
+
+    <script>
+      $(document).ready(function(){
+        $(":checked").remove('grid-view');
+      }
+                       );
+      $("#show").click(function(){
+        $("p").show();
+      }
+                      );
+    </script>
+    <script>
+      function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "demo_get.asp", true);
+        xhttp.send();
+      }
+    </script>
+    <script>
+      var audio = new Audio('sounds/pin.mp3');
+    </script>
+  </body>
+</html>
